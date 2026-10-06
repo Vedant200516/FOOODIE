@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoodApp – Cravings, delivered</title>
+<meta name="description" content="Food ordering web app: menu, cart, discounts, live order tracking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="login" class="login">
+  <div class="login-art" aria-hidden="true">
+    <h1>Cravings,<br>delivered.</h1>
+    <span class="fl f1" data-art="1"></span><span class="fl f2" data-art="2"></span><span class="fl f3" data-art="3"></span>
+    <span class="fl f4" data-art="7"></span><span class="fl f5" data-art="5"></span><span class="fl f6" data-art="4"></span>
+  </div>
+  <form id="loginForm" class="login-card" autocomplete="off">
+    <h2>Welcome back</h2>
+    <p class="muted">Sign in to build your order.</p>
+    <label>Username <input id="user" required></label>
+    <label>Password <input id="pass" type="password" required></label>
+    <label>Your name <input id="cname" required></label>
+    <p id="loginErr" class="err" role="alert"></p>
+    <button class="btn primary wide" type="submit">Sign in</button>
+    <button class="btn ghost wide" type="button" id="demo">Fill demo login</button>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="top">
+    <strong class="logo">FoodApp</strong>
+    <nav>
+      <button class="tab on" data-view="menu">Menu</button>
+      <button class="tab" data-view="history">History</button>
+    </nav>
+    <span id="who" class="who"></span>
+    <button class="cartbtn" id="openCart" aria-label="Open cart"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.5h10.6L21 7H6"/></svg> <b id="badge">0</b></button>
+    <button class="btn ghost" id="logout">Exit</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Hot, fresh and at your door in minutes.</h2>
+      <p>Pick a dish, watch it get made, and get 10% off any order over ₹500.</p>
+      <div class="cta"><button class="btn primary" id="orderNow">Order now</button><span class="pill">Free tracking on every order</span></div>
+      <div class="stats"><div><b>8</b><span>dishes</span></div><div><b>1 min</b><span>prep time</span></div><div><b>10%</b><span>off over ₹500</span></div></div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="big" data-art="1"></div>
+      <div class="orb o1" data-art="2"></div><div class="orb o2" data-art="7"></div><div class="orb o3" data-art="4"></div>
+    </div>
+  </section>
+  <div class="marquee" aria-hidden="true"><div>
+    <span>Pizza</span><span>Burger</span><span>Pasta</span><span>Fries</span><span>Momos</span><span>Sandwich</span><span>Shake</span><span>Brownie</span>
+    <span>Pizza</span><span>Burger</span><span>Pasta</span><span>Fries</span><span>Momos</span><span>Sandwich</span><span>Shake</span><span>Brownie</span>
+  </div></div>
+
+  <main>
+    <section id="menuView">
+      <div class="tools">
+        <div id="chips" class="chips"></div>
+        <input id="search" type="search" placeholder="Search dishes">
+        <button class="btn ghost" id="sort">Sort by price</button>
+      </div>
+      <div id="menu" class="menu"></div>
+    </section>
+    <section id="historyView" hidden>
+      <h2>Order history</h2>
+      <ul id="history" class="history"></ul>
+      <button class="btn ghost" id="clearHist">Clear history</button>
+    </section>
+  </main>
+
+  <section class="how">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div><span class="n">1</span><div class="ic" data-art="1"></div><h3>Pick your food</h3><p>Browse the menu, filter by category and add dishes to your cart.</p></div>
+      <div><span class="n">2</span><div class="ic" data-art="2"></div><h3>Check out</h3><p>Discount and tax are worked out for you before you place the order.</p></div>
+      <div><span class="n">3</span><div class="ic" data-art="7"></div><h3>Track it live</h3><p>Watch every item go from preparing to ready, then dig in.</p></div>
+    </div>
+  </section>
+  <footer class="foot"><strong class="logo">FoodApp</strong><span>Built with HTML, CSS and JavaScript. Based on a Java console project.</span></footer>
+  <div id="scrim" class="scrim"></div>
+  <aside id="drawer" class="drawer" aria-label="Cart">
+    <div class="dh"><h2>Your cart</h2><button class="x" id="closeCart" aria-label="Close cart">✕</button></div>
+    <ul id="cart" class="cartlist"></ul>
+    <dl class="sum">
+      <div><dt>Subtotal</dt><dd id="sub"></dd></div>
+      <div id="discRow" hidden><dt>Discount (10%)</dt><dd id="disc"></dd></div>
+      <div><dt>Tax</dt><dd id="tax"></dd></div>
+      <div class="grand"><dt>Total</dt><dd id="total"></dd></div>
+    </dl>
+    <button class="btn primary wide" id="checkout">Place order</button>
+    <div id="track" class="track" hidden></div>
+  </aside>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="art.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
